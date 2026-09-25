@@ -30,14 +30,14 @@ export default function UserCard({ user }) {
         <Button className="mt-4">
           View Profile
         </Button>
-        
+
          {/* ← tambah tombol ini */}
         <Button
           onClick={() => toggleFavorite(user)}
           variant={isFavorite(user.id) ? "default" : "outline"}
           className="mt-2"
         >
-          {isFavorite(user.id) ? "♥ Favourite" : "♡ Add Favourite"}
+          {isFavorite(user.id) ? "♥ Favorite" : "♡ Add Favorite"}
         </Button>
       </CardContent>
     </Card>
