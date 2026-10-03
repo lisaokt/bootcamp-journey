@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { messages } from "@/lib/db";
 
 export async function submitContactForm(formData) {
@@ -18,6 +19,9 @@ export async function submitContactForm(formData) {
     message,
     createdAt: new Date().toISOString(),
   });
+
+  // ✅ TAMBAH INI!
+  revalidatePath("/messages");
 
   return { success: true };
 }
