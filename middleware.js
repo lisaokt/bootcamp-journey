@@ -43,7 +43,7 @@ export function middleware(request) {
   // 3. Fitur: Auth Guard
   // ---------------------------------------------------------------------------
   // Daftar rute halaman privat yang butuh login
-  const protectedRoutes = ["/favorites", "/dashboard", "/profile"];
+  const protectedRoutes = ["/dashboard", "/profile"];
   const isProtectedRoute = protectedRoutes.some((route) =>
     pathname.startsWith(route)
   );
