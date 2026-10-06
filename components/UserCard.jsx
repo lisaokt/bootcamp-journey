@@ -39,7 +39,7 @@ export default function UserCard({ user }) {
         <p className="text-sm text-muted-foreground">{user.email}</p>
 
         <p className="mt-1 text-sm text-muted-foreground">
-          {user.company.name}
+          {user.company_name}
         </p>
 
         <div className="mt-4 flex gap-2">
