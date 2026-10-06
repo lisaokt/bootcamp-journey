@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { messages } from "@/lib/db";
+import { supabase } from "@/lib/supabase";
 
 export async function submitContactForm(formData) {
   const name = formData.get("name");
@@ -12,16 +12,15 @@ export async function submitContactForm(formData) {
     return { success: false, error: "Semua field wajib diisi." };
   }
 
-  messages.push({
-    id: Date.now(),
-    name,
-    email,
-    message,
-    createdAt: new Date().toISOString(),
-  });
+  const { error } = await supabase
+    .from("messages")
+    .insert({ name, email, message });
 
-  // ✅ TAMBAH INI!
-  revalidatePath("/messages");
+  if (error) {
+    return { success: false, error: error.message };
+  }
+
+  revalidatePath("/messages"); // ← tambah
 
   return { success: true };
 }
